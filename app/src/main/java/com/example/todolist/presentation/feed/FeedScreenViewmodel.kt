@@ -20,7 +20,7 @@ class FeedScreenViewmodel @Inject constructor(
 
     private val _state = MutableStateFlow(FeedScreenState())
 
-    private val state = _state.asStateFlow()
+    val state = _state.asStateFlow()
 
     private var items: List<Item> = emptyList()
 
