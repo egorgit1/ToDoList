@@ -8,7 +8,7 @@ interface ItemRepository {
 
     suspend fun updateItem(item: Item)
 
-    suspend fun getItems(item: Item): List<Item>
+    suspend fun getItems(): List<Item>
 
     suspend fun removeItem(item: Item)
 }

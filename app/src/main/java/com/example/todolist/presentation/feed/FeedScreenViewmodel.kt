@@ -1,11 +1,8 @@
 package com.example.todolist.presentation.feed
 
-import androidx.compose.ui.text.toLowerCase
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
 import com.example.todolist.domain.entity.Item
-import com.example.todolist.domain.repository.ItemRepository
 import com.example.todolist.domain.repository.ItemRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class FeedScreenViewmodel @Inject constructor(
     private val itemRepository: ItemRepositoryImpl
-): ViewModel() {
+) : ViewModel() {
 
     private val _state = MutableStateFlow(FeedScreenState())
 
@@ -37,14 +34,25 @@ class FeedScreenViewmodel @Inject constructor(
         _state.update { it.copy(searchQuery = newQuery) }
 
         viewModelScope.launch {
-            _state.update { it.copy(filteredItems = filterNews(newQuery, items)) }
+            _state.update { it.copy(filteredItems = filterItems(newQuery, items)) }
         }
     }
 
-    private suspend fun filterNews(query: String, items: List<Item>): List<Item> {
+    private suspend fun filterItems(query: String, items: List<Item>): List<Item> {
         return withContext(Dispatchers.Default) {
             if (query.isEmpty()) items
             else items.filter { it.title.lowercase().contains(query.lowercase()) }
         }
     }
+
+    init {
+        getItems()
+    }
+
+    private fun getItems() = viewModelScope.launch {
+        val items = withContext(Dispatchers.Default) { itemRepository.getItems() }
+        this@FeedScreenViewmodel.items = items
+        _state.update { it.copy(filteredItems = filterItems(state.value.searchQuery,items)) }
+    }
 }
+

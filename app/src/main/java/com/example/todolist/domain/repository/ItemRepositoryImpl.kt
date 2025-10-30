@@ -17,7 +17,7 @@ class ItemRepositoryImpl @Inject constructor(
         itemDao.updateItem(item)
     }
 
-    override suspend fun getItems(item: Item): List<Item> {
+    override suspend fun getItems(): List<Item> {
 
         return itemDao.getItems()
     }
