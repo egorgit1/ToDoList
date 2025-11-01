@@ -4,11 +4,15 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -87,9 +91,11 @@ fun FeedScreenContent(
             modifier = Modifier
                 .height(10.dp)
         )
-        LazyColumn(
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2),
             modifier = Modifier
-                .fillMaxWidth(0.9f),
+                .fillMaxWidth(0.9f)
+                .fillMaxHeight(0.9f),
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             items(state.filteredItems) {
@@ -101,6 +107,8 @@ fun FeedScreenContent(
         }
         Icon(
             modifier = Modifier
+                .padding(20.dp)
+                .align(Alignment.End)
                 .clickable{
                     navigate(Screen.Add)
                 },

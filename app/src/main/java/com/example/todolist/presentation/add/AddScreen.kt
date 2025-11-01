@@ -3,6 +3,7 @@ package com.example.todolist.presentation.add
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -68,7 +69,8 @@ fun AddScreenContent(
         OutlinedTextField(
             modifier = Modifier
                 .padding(10.dp)
-                .fillMaxWidth(0.9f),
+                .fillMaxWidth(0.9f)
+                .fillMaxHeight(0.4f),
             value = state.description,
             onValueChange = { onEvent(AddScreenEvent.DescriptionChanged(it)) },
             placeholder = {
