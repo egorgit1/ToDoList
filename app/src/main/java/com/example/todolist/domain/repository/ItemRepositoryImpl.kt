@@ -7,9 +7,14 @@ import javax.inject.Inject
 class ItemRepositoryImpl @Inject constructor(
     val itemDao: ItemDao
 ) : ItemRepository {
-    override suspend fun insertItem(item: Item) {
+    override suspend fun insertItem(title: String, description: String) {
 
-        itemDao.insertItem(item)
+        itemDao.insertItem(
+            Item(
+            0,
+                title,
+                description
+        ))
     }
 
     override suspend fun updateItem(item: Item) {

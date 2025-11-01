@@ -22,7 +22,7 @@ class AddScreenViewmodel @Inject constructor(
 
     fun onEvent(event: AddScreenEvent) {
         when (event) {
-            is AddScreenEvent.BackToFeedBtnClicked -> onBtnClicked(event.item)
+            is AddScreenEvent.BackToFeedBtnClicked -> onBtnClicked()
             is AddScreenEvent.DescriptionChanged -> onDescriptionChanged(event.newDescription)
             is AddScreenEvent.TitleChanged -> onTitleChanged(event.newTitle)
         }
@@ -36,11 +36,12 @@ class AddScreenViewmodel @Inject constructor(
         _state.update { it.copy(title = newTitle) }
     }
 
-    private fun onBtnClicked(newItem: Item) {
-        _state.update { it.copy(newItem.title, newItem.description) }
+    private fun onBtnClicked() {
+        val title = state.value.title
+        val description = state.value.description
 
-        if (!newItem.title.isEmpty() && !newItem.description.isEmpty())
-            viewModelScope.launch { itemRepository.insertItem(newItem) }
+        if (!title.isEmpty() && !description.isEmpty())
+            viewModelScope.launch { itemRepository.insertItem(title,description) }
     }
 
 }

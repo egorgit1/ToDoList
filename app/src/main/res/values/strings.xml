@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">ToDoList</string>
+    <string name="app_name">Заметки</string>
+    <string name="title">Заголовок</string>
+    <string name="description">Описание</string>
 </resources>

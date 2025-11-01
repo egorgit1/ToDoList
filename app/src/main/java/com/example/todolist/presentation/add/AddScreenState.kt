@@ -1,6 +1,6 @@
 package com.example.todolist.presentation.add
 
 data class AddScreenState(
-    val title: String? = null,
-    val description:String? = null,
+    val title: String = "",
+    val description:String = "",
 )

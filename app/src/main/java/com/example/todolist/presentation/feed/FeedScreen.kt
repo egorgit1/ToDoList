@@ -1,5 +1,6 @@
 package com.example.todolist.presentation.feed
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -11,6 +12,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
@@ -20,10 +22,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.todolist.R
 import com.example.todolist.domain.entity.Item
 import com.example.todolist.presentation.navigation.Screen
 import com.example.todolist.presentation.ui.component.ItemCard
@@ -37,14 +42,16 @@ fun FeedScreen(
 
     FeedScreenContent(
         state,
-        viewmodel::onEvent
+        viewmodel::onEvent,
+        navigate
     )
 }
 
 @Composable
 fun FeedScreenContent(
     state: FeedScreenState,
-    onEvent: (FeedScreenEvent) -> Unit
+    onEvent: (FeedScreenEvent) -> Unit,
+    navigate: (Screen) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -52,6 +59,10 @@ fun FeedScreenContent(
             .padding(top = 10.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Text(
+            text = stringResource(R.string.app_name),
+            fontSize = 18.sp
+        )
         OutlinedTextField(
             value = state.searchQuery,
             onValueChange = { onEvent(FeedScreenEvent.SearchQueryChanged(it)) },
@@ -88,6 +99,13 @@ fun FeedScreenContent(
                 )
             }
         }
-
+        Icon(
+            modifier = Modifier
+                .clickable{
+                    navigate(Screen.Add)
+                },
+            imageVector = Icons.Filled.Edit,
+            contentDescription = "Add Item",
+        )
     }
 }

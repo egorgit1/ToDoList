@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.todolist.presentation.add.AddScreen
 import com.example.todolist.presentation.feed.FeedScreen
 import com.example.todolist.presentation.feed.FeedScreenEvent
 import kotlinx.serialization.Serializable
@@ -33,6 +34,11 @@ fun MainNav(
     ) {
         composable<Screen.Feed> {
             FeedScreen { navigateTo ->
+                navHostController.navigate(navigateTo)
+            }
+        }
+        composable<Screen.Add> {
+            AddScreen { navigateTo ->
                 navHostController.navigate(navigateTo)
             }
         }
