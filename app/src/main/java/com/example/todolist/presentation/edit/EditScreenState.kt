@@ -1,4 +1,6 @@
 package com.example.todolist.presentation.edit
 
-class EditScreenState {
-}
+data class EditScreenState(
+val title: String = "",
+val description:String = "",
+)

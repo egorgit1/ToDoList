@@ -5,9 +5,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.todolist.domain.entity.Item
 import com.example.todolist.presentation.add.AddScreen
+import com.example.todolist.presentation.edit.EditScreen
 import com.example.todolist.presentation.feed.FeedScreen
-import com.example.todolist.presentation.feed.FeedScreenEvent
 import kotlinx.serialization.Serializable
 
 sealed interface Screen {
@@ -43,7 +44,11 @@ fun MainNav(
             }
         }
         composable<Screen.Edit> {
-            EditScreen { navigateTo ->
+            val item = navHostController.previousBackStackEntry
+                ?.savedStateHandle
+                ?.get<java.io.Serializable>("item") as? Item
+
+            EditScreen(item = item!!) { navigateTo ->
                 navHostController.navigate(navigateTo)
             }
         }

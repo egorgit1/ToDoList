@@ -3,6 +3,7 @@ package com.example.todolist.domain.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity("item")
 data class Item(
@@ -12,4 +13,4 @@ data class Item(
     val title:String,
     @ColumnInfo("description")
     val description:String,
-)
+) : Serializable

@@ -107,6 +107,7 @@ fun FeedScreenContent(
                 ItemCard(
                     item = it,
                     onItemClick = {
+                        val item = it
 
                     }
                 )
