@@ -51,8 +51,8 @@ fun AddScreenContent(
     ) {
         OutlinedTextField(
             modifier = Modifier
-                .padding(10.dp)
-                .fillMaxWidth(0.9f),
+                .padding(20.dp)
+                .fillMaxWidth(),
             value = state.title,
             onValueChange = { onEvent(AddScreenEvent.TitleChanged(it)) },
             placeholder = {
@@ -68,8 +68,8 @@ fun AddScreenContent(
         )
         OutlinedTextField(
             modifier = Modifier
-                .padding(10.dp)
-                .fillMaxWidth(0.9f)
+                .padding(start = 20.dp, end = 20.dp)
+                .fillMaxWidth()
                 .fillMaxHeight(0.4f),
             value = state.description,
             onValueChange = { onEvent(AddScreenEvent.DescriptionChanged(it)) },

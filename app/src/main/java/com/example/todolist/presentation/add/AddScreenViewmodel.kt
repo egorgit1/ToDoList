@@ -40,7 +40,7 @@ class AddScreenViewmodel @Inject constructor(
         val title = state.value.title
         val description = state.value.description
 
-        if (!title.isEmpty() && !description.isEmpty())
+        if (!title.isEmpty() || !description.isEmpty())
             viewModelScope.launch { itemRepository.insertItem(title,description) }
     }
 
