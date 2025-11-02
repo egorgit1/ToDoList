@@ -70,7 +70,7 @@ fun AddScreenContent(
             modifier = Modifier
                 .padding(start = 20.dp, end = 20.dp)
                 .fillMaxWidth()
-                .fillMaxHeight(0.4f),
+                .fillMaxHeight(0.9f),
             value = state.description,
             onValueChange = { onEvent(AddScreenEvent.DescriptionChanged(it)) },
             placeholder = {

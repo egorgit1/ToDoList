@@ -106,7 +106,9 @@ fun FeedScreenContent(
             items(state.filteredItems) {
                 ItemCard(
                     item = it,
-                    onItemClick = { }
+                    onItemClick = {
+
+                    }
                 )
             }
         }

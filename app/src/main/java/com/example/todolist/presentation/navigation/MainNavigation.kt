@@ -42,5 +42,10 @@ fun MainNav(
                 navHostController.navigate(navigateTo)
             }
         }
+        composable<Screen.Edit> {
+            EditScreen { navigateTo ->
+                navHostController.navigate(navigateTo)
+            }
+        }
     }
 }
