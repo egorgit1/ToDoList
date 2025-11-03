@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class FeedScreenViewmodel @Inject constructor (
+class FeedScreenViewmodel @Inject constructor(
     private val itemRepository: ItemRepositoryImpl
 ) : ViewModel() {
 
@@ -52,7 +52,7 @@ class FeedScreenViewmodel @Inject constructor (
     private fun getItems() = viewModelScope.launch {
         val items = withContext(Dispatchers.Default) { itemRepository.getItems() }
         this@FeedScreenViewmodel.items = items
-        _state.update { it.copy(filteredItems = filterItems(state.value.searchQuery,items)) }
+        _state.update { it.copy(filteredItems = filterItems(state.value.searchQuery, items)) }
     }
 }
 

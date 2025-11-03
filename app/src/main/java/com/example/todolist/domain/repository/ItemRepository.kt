@@ -4,11 +4,15 @@ import com.example.todolist.domain.entity.Item
 
 interface ItemRepository {
 
-    suspend fun  insertItem(title: String, description: String)
+    suspend fun insertItem(title: String, description: String)
 
-    suspend fun updateItem(item: Item)
+    suspend fun updateItemTitle(id: Int, title: String)
+
+    suspend fun updateItemDescription(id: Int, description: String)
+
+    suspend fun getItemById(id: Int): Item
 
     suspend fun getItems(): List<Item>
 
-    suspend fun removeItem(item: Item)
+    suspend fun removeItemById(id: Int)
 }

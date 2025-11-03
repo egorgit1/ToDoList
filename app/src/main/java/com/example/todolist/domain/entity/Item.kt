@@ -3,14 +3,13 @@ package com.example.todolist.domain.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.io.Serializable
 
 @Entity("item")
 data class Item(
     @PrimaryKey(autoGenerate = true)
-    val id:Int,
+    val id: Int,
     @ColumnInfo("title")
-    val title:String,
+    val title: String,
     @ColumnInfo("description")
-    val description:String,
-) : Serializable
+    val description: String,
+)

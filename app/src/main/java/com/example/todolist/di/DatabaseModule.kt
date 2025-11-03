@@ -2,7 +2,6 @@ package com.example.todolist.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.example.todolist.data.database.ToDoDataBase
 import com.example.todolist.domain.dao.ItemDao
 import dagger.Module

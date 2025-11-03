@@ -2,7 +2,6 @@ package com.example.todolist.presentation.add
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.todolist.domain.entity.Item
 import com.example.todolist.domain.repository.ItemRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -41,7 +40,7 @@ class AddScreenViewmodel @Inject constructor(
         val description = state.value.description
 
         if (!title.isEmpty() || !description.isEmpty())
-            viewModelScope.launch { itemRepository.insertItem(title,description) }
+            viewModelScope.launch { itemRepository.insertItem(title, description) }
     }
 
 }

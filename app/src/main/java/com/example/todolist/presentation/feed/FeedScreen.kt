@@ -11,11 +11,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
@@ -28,7 +26,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -36,11 +33,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.todolist.R
-import com.example.todolist.domain.entity.Item
 import com.example.todolist.presentation.navigation.Screen
 import com.example.todolist.presentation.ui.component.ItemCard
-
-//Поправить карточки в списке замержить c main и сделать edit screen
 
 @Composable
 fun FeedScreen(
@@ -107,8 +101,7 @@ fun FeedScreenContent(
                 ItemCard(
                     item = it,
                     onItemClick = {
-                        val item = it
-
+                        navigate(Screen.Edit(id = it.id))
                     }
                 )
             }
@@ -117,7 +110,7 @@ fun FeedScreenContent(
             modifier = Modifier
                 .padding(20.dp)
                 .align(Alignment.End)
-                .clickable{
+                .clickable {
                     navigate(Screen.Add)
                 },
             imageVector = Icons.Filled.Edit,

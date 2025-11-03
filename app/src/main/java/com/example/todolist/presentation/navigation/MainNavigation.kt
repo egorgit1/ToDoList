@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.todolist.domain.entity.Item
+import androidx.navigation.toRoute
 import com.example.todolist.presentation.add.AddScreen
 import com.example.todolist.presentation.edit.EditScreen
 import com.example.todolist.presentation.feed.FeedScreen
@@ -17,7 +17,7 @@ sealed interface Screen {
     data object Feed : Screen
 
     @Serializable
-    data object Edit : Screen
+    data class Edit(val id: Int) : Screen
 
     @Serializable
     data object Add : Screen
@@ -43,14 +43,13 @@ fun MainNav(
                 navHostController.navigate(navigateTo)
             }
         }
-        composable<Screen.Edit> {
-            val item = navHostController.previousBackStackEntry
-                ?.savedStateHandle
-                ?.get<java.io.Serializable>("item") as? Item
-
-            EditScreen(item = item!!) { navigateTo ->
+        composable<Screen.Edit> { backStackEntry ->
+            val args = backStackEntry.toRoute<Screen.Edit>()
+            EditScreen(id = args.id)
+            { navigateTo ->
                 navHostController.navigate(navigateTo)
             }
+
         }
     }
 }

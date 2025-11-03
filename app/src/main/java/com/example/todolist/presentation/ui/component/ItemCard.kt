@@ -1,11 +1,10 @@
 package com.example.todolist.presentation.ui.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -21,9 +20,6 @@ import androidx.compose.ui.unit.sp
 import com.example.todolist.R
 import com.example.todolist.domain.entity.Item
 import com.example.todolist.presentation.ui.theme.ToDoListTheme
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
-import kotlin.time.Clock
 
 @Composable
 fun ItemCard(
@@ -35,7 +31,10 @@ fun ItemCard(
         modifier = Modifier
             .padding(10.dp)
             .height(200.dp)
-            .width(200.dp),
+            .width(200.dp)
+            .clickable {
+                onItemClick()
+            },
         shape = RoundedCornerShape(15.dp)
     ) {
         Column(

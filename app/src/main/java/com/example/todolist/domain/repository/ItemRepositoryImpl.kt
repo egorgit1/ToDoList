@@ -11,15 +11,26 @@ class ItemRepositoryImpl @Inject constructor(
 
         itemDao.insertItem(
             Item(
-            0,
+                0,
                 title,
                 description
-        ))
+            )
+        )
     }
 
-    override suspend fun updateItem(item: Item) {
+    override suspend fun updateItemTitle(id: Int, title: String) {
 
-        itemDao.updateItem(item)
+        itemDao.updateItemTitleById(id, title)
+    }
+
+    override suspend fun updateItemDescription(id: Int, description: String) {
+
+        itemDao.updateItemDescById(id, description)
+    }
+
+    override suspend fun getItemById(id: Int): Item {
+
+        return itemDao.getItemById(id)
     }
 
     override suspend fun getItems(): List<Item> {
@@ -27,8 +38,8 @@ class ItemRepositoryImpl @Inject constructor(
         return itemDao.getItems()
     }
 
-    override suspend fun removeItem(item: Item) {
+    override suspend fun removeItemById(id: Int) {
 
-        itemDao.removeItem(item)
+        itemDao.removeItemById(id)
     }
 }
