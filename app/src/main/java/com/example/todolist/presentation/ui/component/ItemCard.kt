@@ -35,7 +35,6 @@ fun ItemCard(
             .clickable {
                 onItemClick()
             },
-        shape = RoundedCornerShape(15.dp)
     ) {
         Column(
             modifier = Modifier

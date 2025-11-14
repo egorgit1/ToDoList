@@ -1,7 +1,8 @@
-package com.example.todolist.domain.repository
+package com.example.todolist.data.repository
 
 import com.example.todolist.domain.dao.ItemDao
 import com.example.todolist.domain.entity.Item
+import com.example.todolist.domain.repository.ItemRepository
 import javax.inject.Inject
 
 class ItemRepositoryImpl @Inject constructor(

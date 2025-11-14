@@ -4,7 +4,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
-import com.example.todolist.domain.repository.ItemRepositoryImpl
+import com.example.todolist.data.repository.ItemRepositoryImpl
+import com.example.todolist.domain.repository.ItemRepository
 import com.example.todolist.presentation.navigation.Screen
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class EditScreenViewmodel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    val itemRepository: ItemRepositoryImpl
+    val itemRepository: ItemRepository
 ) : ViewModel() {
 
     private val args = savedStateHandle.toRoute<Screen.Edit>()

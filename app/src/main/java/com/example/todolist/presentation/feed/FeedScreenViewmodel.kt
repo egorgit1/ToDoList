@@ -3,7 +3,8 @@ package com.example.todolist.presentation.feed
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.todolist.domain.entity.Item
-import com.example.todolist.domain.repository.ItemRepositoryImpl
+import com.example.todolist.data.repository.ItemRepositoryImpl
+import com.example.todolist.domain.repository.ItemRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FeedScreenViewmodel @Inject constructor(
-    private val itemRepository: ItemRepositoryImpl
+    private val itemRepository: ItemRepository
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(FeedScreenState())

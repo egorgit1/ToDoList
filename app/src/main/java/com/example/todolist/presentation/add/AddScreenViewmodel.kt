@@ -2,7 +2,8 @@ package com.example.todolist.presentation.add
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.todolist.domain.repository.ItemRepositoryImpl
+import com.example.todolist.data.repository.ItemRepositoryImpl
+import com.example.todolist.domain.repository.ItemRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddScreenViewmodel @Inject constructor(
-    val itemRepository: ItemRepositoryImpl
+    val itemRepository: ItemRepository
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(AddScreenState())
