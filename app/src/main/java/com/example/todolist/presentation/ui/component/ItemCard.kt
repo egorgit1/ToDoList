@@ -13,6 +13,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -28,7 +29,7 @@ fun ItemCard(
     onItemClick: () -> Unit,
 ) {
     Card(
-        modifier = Modifier
+        modifier
             .padding(10.dp)
             .height(200.dp)
             .width(200.dp)
@@ -37,18 +38,11 @@ fun ItemCard(
             },
     ) {
         Column(
-            modifier = Modifier
+            modifier
                 .fillMaxSize()
-                .background(colorResource(R.color.beige))
+                .background(colorResource(item.color))
                 .padding(10.dp)
         ) {
-            Text(
-                text = item.title,
-                fontSize = 22.sp
-            )
-            Spacer(
-                modifier = Modifier.height(10.dp)
-            )
             Text(
                 text = item.description,
                 fontSize = 12.sp,
@@ -65,8 +59,8 @@ fun ItemPreview() {
         ItemCard(
             item = Item(
                 id = 1,
-                title = "Title",
                 description = "Description",
+                color = R.color.red,
             ), onItemClick = {}
         )
     }

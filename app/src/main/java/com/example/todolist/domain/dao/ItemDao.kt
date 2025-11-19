@@ -10,11 +10,11 @@ interface ItemDao {
     @Insert
     suspend fun insertItem(item: Item)
 
-    @Query("UPDATE item set title =:title WHERE id =:id")
-    suspend fun updateItemTitleById(id: Int, title: String)
-
     @Query("UPDATE item set description =:description WHERE id =:id")
     suspend fun updateItemDescById(id: Int, description: String)
+
+    @Query("UPDATE item set color =:color WHERE id =:id")
+    suspend fun updateItemColorById(id: Int, color: Int)
 
     @Query("DELETE FROM item WHERE id =:id")
     suspend fun removeItemById(id: Int)

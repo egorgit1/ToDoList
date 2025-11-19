@@ -42,7 +42,7 @@ class FeedScreenViewmodel @Inject constructor(
     private suspend fun filterItems(query: String, items: List<Item>): List<Item> {
         return withContext(Dispatchers.Default) {
             if (query.isEmpty()) items
-            else items.filter { it.title.lowercase().contains(query.lowercase()) }
+            else items.filter { it.description.lowercase().contains(query.lowercase()) }
         }
     }
 

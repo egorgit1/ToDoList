@@ -2,7 +2,6 @@ package com.example.todolist.presentation.add
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.todolist.data.repository.ItemRepositoryImpl
 import com.example.todolist.domain.repository.ItemRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,7 +23,8 @@ class AddScreenViewmodel @Inject constructor(
         when (event) {
             is AddScreenEvent.BackToFeedBtnClicked -> onBtnClicked()
             is AddScreenEvent.DescriptionChanged -> onDescriptionChanged(event.newDescription)
-            is AddScreenEvent.TitleChanged -> onTitleChanged(event.newTitle)
+            is AddScreenEvent.ColorChanged -> onColorChanged(event.newColor)
+            is AddScreenEvent.ExpandChanged -> onExpandChanged(event.newExpand)
         }
     }
 
@@ -32,16 +32,20 @@ class AddScreenViewmodel @Inject constructor(
         _state.update { it.copy(description = newDescription) }
     }
 
-    private fun onTitleChanged(newTitle: String) {
-        _state.update { it.copy(title = newTitle) }
+    private fun onColorChanged(newColor: Int) {
+        _state.update { it.copy(color = newColor) }
+    }
+
+    private fun onExpandChanged(newExpand: Boolean) {
+        _state.update { it.copy(isExpanded = newExpand) }
     }
 
     private fun onBtnClicked() {
-        val title = state.value.title
         val description = state.value.description
+        val color = state.value.color
 
-        if (!title.isEmpty() || !description.isEmpty())
-            viewModelScope.launch { itemRepository.insertItem(title, description) }
+        if (!description.isEmpty()&&color!=0)
+            viewModelScope.launch { itemRepository.insertItem(description, color) }
     }
 
 }

@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Заметки</string>
+    <string name="beige">Бежевый</string>
+    <string name="red">Красный</string>
+    <string name="green">Зеленый</string>
+    <string name="blue">Синий</string>
+    <string name="choose_color">Выбрать цвет</string>
+    <string name="change_color">Изменить цвет</string>
     <string name="title">Заголовок</string>
     <string name="description">Описание</string>
 </resources>
