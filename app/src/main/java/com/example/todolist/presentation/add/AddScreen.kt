@@ -27,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -81,7 +82,9 @@ fun AddScreenContent(
             )
             IconButton(
                 onClick = { onEvent(AddScreenEvent.ExpandChanged(true)) },
-                modifier = Modifier.align(Alignment.CenterEnd)
+                modifier = Modifier
+                    .align(Alignment.CenterEnd)
+                    .testTag("expand_button"),
             ) {
                 Icon(Icons.Default.ArrowDropDown, contentDescription = stringResource(R.string.choose_color))
             }
@@ -113,7 +116,8 @@ fun AddScreenContent(
             modifier = Modifier
                 .padding(start = 20.dp, end = 20.dp)
                 .fillMaxWidth()
-                .fillMaxHeight(0.9f),
+                .fillMaxHeight(0.9f)
+                .testTag("description_field"),
             value = state.description,
             onValueChange = { onEvent(AddScreenEvent.DescriptionChanged(it)) },
             placeholder = {

@@ -73,7 +73,7 @@ fun FeedScreenContent(
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Outlined.Search,
-                    contentDescription = "",
+                    contentDescription = "Search Icon",
                     tint = Color.Gray
                 )
             },

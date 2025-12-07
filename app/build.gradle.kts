@@ -30,6 +30,23 @@ android {
             )
         }
     }
+
+    packaging {
+        resources {
+            excludes += listOf(
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE-notice.md",
+                "META-INF/LICENSE.txt",
+                "META-INF/NOTICE.md",
+                "META-INF/NOTICE.txt",
+                "META-INF/AL2.0",
+                "META-INF/LGPL2.1",
+                "META-INF/DEPENDENCIES",
+                "META-INF/INDEX.LIST"
+            )
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -44,7 +61,18 @@ android {
 
 dependencies {
 
-    testImplementation(libs.bundles.unit.test)
+    implementation(libs.androidx.junit.ktx)
+    implementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation ("androidx.compose.ui:ui-test-junit4:1.10.0")
+    androidTestImplementation ("androidx.compose.ui:ui-test:1.10.0")
+    debugImplementation ("androidx.compose.ui:ui-test-manifest:1.10.0")
+    androidTestImplementation ("androidx.test.ext:junit:1.3.0")
+    androidTestImplementation("io.mockk:mockk-android:1.14.6")
+
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    testImplementation("app.cash.turbine:turbine:1.0.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -73,9 +101,5 @@ dependencies {
 
     implementation(libs.kotlinx.serialization)
     implementation(libs.androidx.navigation.compose)
-
-    implementation(libs.coil.compose)
-
-    implementation(libs.kotlinx.datetime)
-    implementation(libs.bundles.ktor)
+    testImplementation(kotlin("test"))
 }
